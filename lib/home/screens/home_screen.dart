@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             }, 
           icon: (isPressed)?
-          Icons.favorite_border:Icons.favorite,
+          Icons.favorite:Icons.favorite_border,
                    
            ),
            
@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
             isPlaying=!isPlaying;        
               setState((){});
             if(isPlaying){
-              audioPlayer.play(AssetSource("alnas.mp3"));
+              audioPlayer.play(AssetSource("audio/alnas.mp3"));
             }
             else{
               audioPlayer.pause();
