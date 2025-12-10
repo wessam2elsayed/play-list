@@ -25,12 +25,21 @@ class ListScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 200,
                   child: Column(children: [
-                    Row(children: [                 
-                    Icon(Icons.arrow_back_ios,
-                  color: AppColors.purpleColor,),               
-                  Icon(Icons.favorite,
-                  color: AppColors.purpleColor,),
-                  ]),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [                 
+                      IconButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back_ios,
+                                        color: AppColors.purpleColor,),) ,              
+                                        Icon(Icons.favorite,
+                                        color: AppColors.purpleColor,),
+                                        ]),
+                    ),
                   Text(lists[0].audioname,
                 style: TextStyle(color: AppColors.primaryColor,
                 fontSize: 20),),

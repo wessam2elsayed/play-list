@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:play_list/home/screens/list_screen.dart';
+import 'package:play_list/home/screens/try_screen.dart';
+
+
 
 
 
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ListScreen(),
+      home: TryScreen(),
     );
   }
 }

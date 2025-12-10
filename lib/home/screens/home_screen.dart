@@ -6,6 +6,8 @@ import 'package:play_list/home/widgets/circle.dart';
 import 'package:play_list/home/widgets/audio_name_row.dart';
 import 'package:play_list/home/widgets/slider_value_row.dart';
 
+
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -19,15 +21,40 @@ class _HomeScreenState extends State<HomeScreen> {
     double value=0;
    bool isPlaying= false;
    final audioPlayer=AudioPlayer();
+   Duration duration= Duration.zero;
+   Duration position=Duration.zero;
+   
+
+   @override
+  void initState() {
+    audioPlayer.onDurationChanged.listen((Duration dur){
+       setState(() {
+        duration=dur;
+      });
+    });
+    audioPlayer.onPositionChanged.listen((Duration pos){
+      setState(() {
+        position=pos;
+      });
+    });
+    super.initState();
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
-      leading: IconButton(onPressed: (){},
+
+      leading: IconButton(onPressed: (){
+         Navigator.pop(context);
+      },
        icon: Icon(Icons.arrow_back,
        color: AppColors.whiteColor,)),
+
        actions: [IconButton(onPressed: (){},
         icon: Icon(Icons.menu,
         color: AppColors.whiteColor,))],
@@ -47,43 +74,46 @@ class _HomeScreenState extends State<HomeScreen> {
           
           AudioNameRow(
             onPressed: (){
-              isPressed =! isPressed;
               setState(() {
                 
               });
             }, 
           icon: (isPressed)?
-          Icons.favorite_border:Icons.favorite          
+          Icons.favorite_border:Icons.favorite,
+                   
            ),
            
 
           Slider(
       min: 0,
-      max: 0.50,
-      value: value,
+      max: duration.inSeconds.toDouble(),
+      value: position.inSeconds.toDouble(),
        onChanged: (val){
-        value=val;
+       audioPlayer.seek(Duration(seconds: val.toInt()));
         setState(() {
-          
+           
         });
         
        }),
-       SliderValueRow(txt1: "00.00", txt2: "00.50"),
-          InkWell(onTap: (){
-            isPlaying=!isPlaying;
-            setState((){});
+       SliderValueRow(
+        txt1: "${position.inMinutes}:${position.inSeconds}",
+        txt2: "${duration.inMinutes}:${duration.inSeconds}"),
+
+          InkWell(onTap: (){   
+            isPlaying=!isPlaying;        
+              setState((){});
             if(isPlaying){
-              audioPlayer.play(AssetSource("assets/audio/alnas.mp3"));
+              audioPlayer.play(AssetSource("alnas.mp3"));
             }
             else{
               audioPlayer.pause();
             }
           },
             child: CircleAvatar(radius: 20,
-            backgroundColor: AppColors.purpleColor,
+            backgroundColor: Colors.blue,
             child: Icon(isPlaying? Icons.pause:Icons.play_arrow,
-            color: AppColors.whiteColor,),),
-          )
+            color: Colors.white),),
+          ),
 
 
         ],),
@@ -92,5 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     
     
+  }
+   @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
   }
 }

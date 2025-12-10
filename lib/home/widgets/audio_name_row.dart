@@ -5,11 +5,12 @@ import 'package:play_list/models/list_model.dart';
 class AudioNameRow extends StatelessWidget {
   const AudioNameRow({super.key,
    required this.onPressed,
-    required this.icon,});
+    required this.icon, });
 
   
   final VoidCallback onPressed;
   final IconData icon;
+  
 
   @override
   Widget build(BuildContext context) {
