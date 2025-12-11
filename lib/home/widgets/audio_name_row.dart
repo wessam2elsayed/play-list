@@ -12,20 +12,24 @@ class AudioNameRow extends StatelessWidget {
   final IconData icon;
   
 
+  
+
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_typing_uninitialized_variables
+    int index=0;
     return Padding(
             padding: const EdgeInsets.all(10),
             child: Row(children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(lists[0].audioname,
+                  Text(lists[index].audioname,
                   style: TextStyle(color: AppColors.whiteColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
                   ),
-                  Text(lists[0].name,
+                  Text(lists[index].name,
                   style: TextStyle(color: AppColors.whiteColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),

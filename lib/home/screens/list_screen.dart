@@ -11,6 +11,8 @@ import 'package:play_list/models/list_model.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key, });
+  
+  get index => 0;
 
  
 
@@ -40,10 +42,10 @@ class ListScreen extends StatelessWidget {
                                         color: AppColors.purpleColor,),
                                         ]),
                     ),
-                  Text(lists[0].audioname,
+                  Text(lists[index].audioname,
                 style: TextStyle(color: AppColors.primaryColor,
                 fontSize: 20),),
-                Text(lists[0].name,
+                Text(lists[index].name,
                 style: TextStyle(color: AppColors.primaryColor,
                 fontSize: 15)),
                   ],),
@@ -51,7 +53,7 @@ class ListScreen extends StatelessWidget {
               )
         ),
         SliverToBoxAdapter(
-          child:  ListViewScreen(lists: lists,),
+          child:  ListViewScreen(),
         )],
       )
         

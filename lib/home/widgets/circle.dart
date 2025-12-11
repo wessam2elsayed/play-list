@@ -9,7 +9,7 @@ class Circle extends StatelessWidget {
     return CircleAvatar(radius: 145,
           backgroundColor: AppColors.purpleColor,
           child: CircleAvatar(radius: 140,
-          backgroundImage: AssetImage("assets/images/alafasy.jpg"),),
+          backgroundImage: AssetImage("assets/images/quran.jpg"),),
         
           );
   }

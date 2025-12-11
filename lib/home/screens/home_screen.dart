@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           AudioNameRow(
             onPressed: (){
               setState(() {
-                
+                isPressed=!isPressed;
               });
             }, 
           icon: (isPressed)?
@@ -110,9 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
             child: CircleAvatar(radius: 20,
-            backgroundColor: Colors.blue,
+            backgroundColor: AppColors.purpleColor,
             child: Icon(isPlaying? Icons.pause:Icons.play_arrow,
-            color: Colors.white),),
+            color: AppColors.whiteColor),),
           ),
 
 
